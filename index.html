@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crystals-Collector-Game</title>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+    <style>
+        .diamond {
+            width: 90px;
+            height: 90px;
+            background: #1eff00;
+            margin: 0;
+            padding: 0;
+        }
+        #red {
+            color: white;
+            background-color: red;
+            border-color: black;
+        }
+        #blue {
+            color: white;
+            background-color: blue;
+            border-color: black;
+        }
+        #yellow {
+            color: white;
+            background-color: yellow;
+            border-color: black;
+        }
+        #green {
+            color: white;
+            background-color: green;
+            border-color: black;
+        }
+        
+    </style>
+        
+        <h1>Crystals-Collector-Game!</h1>
+
+        <h2 >Rules of the Game</h2>
+        <p>You will be given a random number at the start of the game.  There are four crystals below.  
+            By clicking on a crystal you will add a specific amount of points to your total score.  
+            You win the game by matching your total score to the ramdom number, 
+            you lose the game if your total score goes above the random number.</p>
+        <p>The value of each crystal is hidden from you until you click on it.  Each time when the game starts, the game will change the values of each crystal.</p>
+        <br>
+    <div class="row, container">
+        <h3 class="col-sm-3"></h3>
+        <h3 class="col-sm-3">Target Score: 
+          <span id='targetScore'>0</span>
+          </h3>
+          <h3 class="col-sm-2 ">Your Score: <span id='yourScore'>0</span>
+          </h3>
+        
+          <br>
+          
+        <div class="buttons">
+            <button class="diamond" id="red" value="5">Red</button>
+            <button class="diamond" id="blue" value="10">Blue</button>
+            <button class="diamond" id="yellow" value="15">Yellow</button>
+            <button class="diamond" id="green" value="20">Green</button>
+        </div>
+        <br>
+        <div class="reset">
+            <button class="resetButton">Start Over</button>
+        </div>
+        
+        <script>
+       
+            var yourScore = document.getElementById('yourScore');
+                yourScore.innerHTML = 0; 
+            var targetScore = document.getElementById('targetScore');
+                targetScore.innerHTML = getRandomValue(120, 19);
+
+            function addToScore(val) {
+             var numberToAdd = parseInt(val);
+            var currentScore = parseInt(yourScore.innerHTML);
+        	yourScore.innerHTML = numberToAdd + currentScore;
+        }
+
+            var red = document.getElementById("red");
+            console.log(red.value);
+
+            var blue = document.getElementById("blue");
+            console.log(blue.value);
+
+            var yellow = document.getElementById("yellow");
+            console.log(yellow.value);
+
+            var green = document.getElementById("green");
+            console.log(green.value);
+
+           
+            red.addEventListener('click', function() {
+           
+            addToScore(this.value);
+            checkPlayerScore();
+            });
+
+           
+            blue.addEventListener('click', function() {
+           
+            addToScore(this.value);
+            checkPlayerScore();
+            });
+
+            yellow.addEventListener('click', function() {
+            
+               
+            addToScore(this.value);
+            checkPlayerScore();
+            });
+
+            green.addEventListener('click', function() {
+            
+                
+            addToScore(this.value);
+            checkPlayerScore();
+            });
+			
+			
+            function getRandomValue (a,b){
+            return Math.floor((Math.random() * a) + b);
+            }
+
+            function checkPlayerScore() {
+           
+            var playerInt = parseInt(yourScore.innerHTML);
+            var targetInt = parseInt(targetScore.innerHTML);
+            if (playerInt === targetInt) {
+                alert('You win!');
+            } else if (playerInt > targetInt) {
+                alert('You lose!');
+        } 
+        }
+
+            console.log(getRandomValue(12,1));
+                
+        </script>
+
+
+        </body>
+        </html>
